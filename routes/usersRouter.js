@@ -75,13 +75,13 @@ router.delete("/:id", async (request , response) => {
                 
                 await Post.deleteMany({ username : user.username })
                 await User.findByIdAndDelete(request.params.id)
-                response.status(200).json("User has been Deleted !!")
+                response.status(200).json({msg:"User has been Deleted !!"})
             }else{
                 response.status(401).json({msg : "User Not Found"})
             }
         } catch (error) {
             console.log(error);
-            response.status(500).json({"error" : error})
+            response.status(500).json({msg:"Error" , error})
             
         }
     } else {

@@ -7,7 +7,7 @@ const usersRouter = require('./routes/usersRouter')
 const postRouter = require('./routes/postRouter')
 const contactRouter = require('./routes/contactRouter')
 const categoryRouter = require('./routes/categoriesRouter')
-const uploadFile = require('./routes/uploadFile')
+
 
 require('./db/db')
 const app =express()
