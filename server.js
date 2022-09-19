@@ -7,6 +7,7 @@ const usersRouter = require('./routes/usersRouter')
 const postRouter = require('./routes/postRouter')
 const contactRouter = require('./routes/contactRouter')
 const categoryRouter = require('./routes/categoriesRouter')
+const commentRouter = require('./routes/commentRouter.js')
 
 
 require('./db/db')
@@ -14,14 +15,12 @@ const app =express()
 
 const PORT = process.env.PORT || 5000;
 // const bodyparser = require("body-parser");
+const cors = require("cors");
+
+
+app.use(cors());
 
 //npm path
-app.use("/images", express.static(path.join(__dirname,"/images")))
-
-
-
-
-
 
 
 app.use(express.json())
@@ -31,6 +30,9 @@ app.get("/",(req,res)=>{
     res.send("Hello from node")
 })
 
+
+
+app.use("/images", express.static(path.join(__dirname,"/images")))
 
 //multer
 
@@ -61,7 +63,12 @@ app.use('/api/users',usersRouter)
 app.use('/api/posts',postRouter)
 app.use('/api/contact',contactRouter)
 app.use('/api/categories',categoryRouter)
+app.use('/api/comment',commentRouter)
 
 app.listen(PORT,()=>{
     console.log(`liss PORT ${PORT}`);
 })
+
+// setInterval(()=>{
+//     console.log("reload");
+// },10000)
