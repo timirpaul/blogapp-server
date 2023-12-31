@@ -13,6 +13,10 @@ const postSchema = new mongoose.Schema({
         type : String,
         required : false
     },
+    cloudinaryPublicId:{
+        type:String ,
+        required:false
+    },
     categories :{
         type : Array
 

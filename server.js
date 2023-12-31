@@ -15,10 +15,10 @@ const commentRouter = require('./routes/commentRouter.js')
 require('./db/db')
 const app =express()
 
-const PORT = process.env.PORT || 5000;
 // const bodyparser = require("body-parser");
 const cors = require("cors");
 
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 
@@ -34,31 +34,32 @@ app.get("/",(req,res)=>{
 
 
 
-app.use("/images", express.static(path.join(__dirname,"/images")))
+// app.use("/images", express.static(path.join(__dirname,"/images")))
 
 //multer
 
-const storage = multer.diskStorage({
-    destination : (request , file , callback) => {
-        callback(null ,"images")
-    },
-    filename : (request , file , callback) => {
-        callback(null , request.body.name)
-    }
-})
+// const storage = multer.diskStorage({
+//     destination : (request , file , callback) => {
+//         callback(null ,"images")
+//     },
+//     filename : (request , file , callback) => {
+//         callback(null , request.body.name)
+//     }
+// })
 
-const upload = multer({storage : storage})
+// const upload = multer({storage : storage})
 
-app.post("/api/upload" , upload.single("file") , (req , res ) => {
-    try {
+// app.post("/api/upload" , upload.single("file") , (req , res ) => {
+//     try {
+//         console.log(req.file);
         
-        res.status(200).json({result: true, msg:"Fill has been uploaded"})
+//         res.status(200).json({result: true, msg:"Fill has been uploaded"})
         
-    } catch (error) {
-        response.status(500).json(error)
-    }
-})
-
+//     } catch (error) {
+//         console.log("err");
+//         response.status(500).json(error)
+//     }
+// })
 
 app.use('/api',Auth)
 app.use('/api/users',usersRouter)
@@ -71,6 +72,4 @@ app.listen(PORT,()=>{
     console.log(`liss PORT ${PORT}`);
 })
 
-// setInterval(()=>{
-//     console.log("reload");
-// },10000)
+
