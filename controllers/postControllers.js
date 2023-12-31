@@ -66,7 +66,7 @@ const deletePost = async (req, res) => {
    
     const post = await Post.findById(postId);
 
-    if (req.body.username === post.username) {
+    if (username === post.username) {
       await deleteCloudinary(post.cloudinaryPublicId)
       await post.delete()
       res.status(200).json({ msg: "Post Delete Successfully !!" });
